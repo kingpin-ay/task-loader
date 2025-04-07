@@ -24,3 +24,47 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.vim-editor {
+  font-family: monospace;
+  background-color: #1e1e1e;
+  color: #d4d4d4;
+  padding: 1rem;
+  border-radius: 4px;
+  min-height: 300px;
+  position: relative;
+}
+
+.mode-indicator {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0.5rem;
+  background-color: #2d2d2d;
+  border-radius: 0 4px 0 0;
+}
+
+.editor-content {
+  margin-top: 2rem;
+  white-space: pre;
+}
+
+.editor-row {
+  min-height: 1.2em;
+}
+
+.char {
+  display: inline-block;
+  min-width: 0.6em;
+}
+
+.cursor {
+  background-color: #d4d4d4;
+  color: #1e1e1e;
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
