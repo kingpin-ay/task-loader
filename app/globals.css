@@ -33,6 +33,7 @@ body {
   border-radius: 4px;
   min-height: 300px;
   position: relative;
+  overflow-x: auto;
 }
 
 .mode-indicator {
@@ -42,26 +43,71 @@ body {
   padding: 0.5rem;
   background-color: #2d2d2d;
   border-radius: 0 4px 0 0;
+  z-index: 10;
 }
 
 .editor-content {
   margin-top: 2rem;
   white-space: pre;
+  font-family: 'Fira Code', monospace;
+  font-size: 14px;
+  line-height: 1.5;
 }
 
 .editor-row {
-  min-height: 1.2em;
+  min-height: 1.5em;
+  display: flex;
+  position: relative;
+}
+
+.line-number {
+  width: 2rem;
+  text-align: right;
+  padding-right: 0.5rem;
+  color: #666;
+  user-select: none;
+  position: sticky;
+  left: 0;
+  background-color: #1e1e1e;
+  z-index: 1;
+}
+
+.line-content {
+  flex: 1;
+  position: relative;
 }
 
 .char {
   display: inline-block;
   min-width: 0.6em;
+  height: 1.5em;
+  line-height: 1.5em;
 }
 
 .cursor {
+  display: inline-block;
+  min-width: 0.6em;
+  height: 1.5em;
+  line-height: 1.5em;
   background-color: #d4d4d4;
   color: #1e1e1e;
   animation: blink 1s step-end infinite;
+  position: relative;
+}
+
+.cursor::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 2px;
+  height: 100%;
+  background-color: #d4d4d4;
+}
+
+.selected {
+  background-color: #264f78;
+  color: #d4d4d4;
 }
 
 @keyframes blink {
