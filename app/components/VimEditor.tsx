@@ -118,6 +118,28 @@ export default function VimEditor() {
         case "/":
           setMode("search");
           break;
+        case "h":
+        case "ArrowLeft":
+          setCursor((prev) => ({ ...prev, col: Math.max(0, prev.col - 1) }));
+          break;
+        case "j":
+        case "ArrowDown":
+          setCursor((prev) => ({
+            ...prev,
+            row: Math.min(content.length - 1, prev.row + 1),
+          }));
+          break;
+        case "k":
+        case "ArrowUp":
+          setCursor((prev) => ({ ...prev, row: Math.max(0, prev.row - 1) }));
+          break;
+        case "l":
+        case "ArrowRight":
+          setCursor((prev) => ({
+            ...prev,
+            col: Math.min(content[prev.row].length, prev.col + 1),
+          }));
+          break;
         case "d":
           if (selection) {
             deleteSelection();
@@ -150,24 +172,6 @@ export default function VimEditor() {
           }));
           break;
         }
-        case "ArrowUp":
-          setCursor((prev) => ({ ...prev, row: Math.max(0, prev.row - 1) }));
-          break;
-        case "ArrowDown":
-          setCursor((prev) => ({
-            ...prev,
-            row: Math.min(content.length - 1, prev.row + 1),
-          }));
-          break;
-        case "ArrowLeft":
-          setCursor((prev) => ({ ...prev, col: Math.max(0, prev.col - 1) }));
-          break;
-        case "ArrowRight":
-          setCursor((prev) => ({
-            ...prev,
-            col: Math.min(content[prev.row].length, prev.col + 1),
-          }));
-          break;
       }
     },
     [content, cursor, selection, deleteSelection]
